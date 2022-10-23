@@ -300,6 +300,7 @@ img {
 
 .campo__field--textarea{
     height: 20rem;
+    resize: none;
 }
 
 .campo__submit{
