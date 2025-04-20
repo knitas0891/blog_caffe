@@ -13,6 +13,17 @@ spec:
       labels:
         app: blog-web
     spec:
+      initContainers:
+      - name: git-clone
+        image: alpine/git
+        command:
+          - /bin/sh
+          - -c
+          - |
+            git clone --depth=1 https://github.com/knitas0891/blog_caffe.git /src
+        volumeMounts:
+        - name: html
+          mountPath: /src
       containers:
       - name: nginx
         image: nginx:latest
@@ -23,5 +34,5 @@ spec:
           mountPath: /usr/share/nginx/html
       volumes:
       - name: html
-        configMap:
-          name: blog-html
+        emptyDir: {}
+
